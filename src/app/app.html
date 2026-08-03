@@ -1,1 +1,10 @@
-<h1>API</h1>
+<h1>API Service</h1>
+
+@for( p of productList;track p.id){
+    <ul>
+        <li>{{p.title}}</li>
+        <li>{{p.price}}</li>
+        <li>{{p.category}}</li>
+        <!-- <li><img src="{{p.thumbnail}}" alt=""></li> -->
+    </ul>
+}
