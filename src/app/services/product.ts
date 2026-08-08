@@ -12,4 +12,9 @@ export class Product {
         const url="http://localhost:3000/users";
         return this.http.get<User[]>(url);
     }
+
+    saveUser(us:User):Observable<User>{
+        const url="http://localhost:3000/users";
+        return this.http.post<User>(url,us);
+    }
 }

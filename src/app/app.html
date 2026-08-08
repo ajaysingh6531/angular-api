@@ -1,7 +1,18 @@
 <h1>API Service</h1>
-<p>Total: {{ productList.length }}</p>
+<p>Total: {{ userList.length }}</p>
 <h6>hey man</h6>
-@for( p of productList;track p.id){
+
+<form #userForm="ngForm"  (ngSubmit)="addUser(userForm.value)">
+    <input type="text" name="name" id="" placeholder="enter name" ngModel>
+    <br><br>
+    <input type="text" name="age" id="" placeholder="enter age" ngModel>
+    <br><br>
+    <input type="text" name="email" id="" placeholder="enter email" ngModel>
+    <br><br>
+    <button>Add User</button>
+</form>
+
+@for( p of userList;track p.id){
     <ul>
         <li>{{p.name}}</li>
         <li>{{p.age}}</li>

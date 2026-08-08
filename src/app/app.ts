@@ -3,25 +3,40 @@ import { RouterOutlet } from '@angular/router';
 import {Product} from './services/product'
 import { User } from './interfaces/User';
 import { NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet ,NgFor],
+  standalone: true,
+  imports: [RouterOutlet ,NgFor,FormsModule],
   templateUrl: './app.html',
+  
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('angular-api');
 
-  productList:User[]=[];
+  userList:User[]=[];
   constructor(private pService: Product){
 
   }
   ngOnInit(){
-    this.pService.getUser().subscribe((data:User[])=>{
+    this.getuser();
+  }
+  getuser(){
+     this.pService.getUser().subscribe((data:User[])=>{
       console.log('Received', data.length);
       console.log(data);
-      this.productList=data;
+      this.userList=data;
     })
+  }
+  addUser(u:User){
+    this.pService.saveUser(u).subscribe((data:User)=>{
+      console.log("saved data",data)
+      if(data){
+        this.getuser();
+      }
+    })
+    
   }
 }
