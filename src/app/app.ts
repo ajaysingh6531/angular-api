@@ -39,4 +39,15 @@ export class App {
     })
     
   }
+  deleteUser(id:string){
+    //console.log(id);
+    this.pService.delete(id).subscribe((data:User)=>{
+      //console.log(data)
+      if(data){
+        this.getuser();
+      }
+    })
+    
+
+  }
 }

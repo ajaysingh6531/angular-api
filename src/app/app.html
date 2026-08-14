@@ -11,12 +11,13 @@
     <br><br>
     <button>Add User</button>
 </form>
-
+<h4>you will see content when you click on the any input field then click outside  dont know what is the issue</h4>
 @for( p of userList;track p.id){
     <ul>
         <li>{{p.name}}</li>
         <li>{{p.age}}</li>
         <li>{{p.email}}</li>
         <!-- <li><img src="{{p.thumbnail}}" alt=""></li> -->
+         <li><button (click)="deleteUser(p.id)">Delete</button></li>
     </ul>
 }
