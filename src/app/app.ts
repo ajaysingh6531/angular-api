@@ -17,6 +17,7 @@ export class App {
   protected readonly title = signal('angular-api');
 
   userList:User[]=[];
+  selectedusr:User |undefined;
   constructor(private pService: Product){
 
   }
@@ -31,13 +32,24 @@ export class App {
     })
   }
   addUser(u:User){
-    this.pService.saveUser(u).subscribe((data:User)=>{
+    if(!this.selectedusr){
+      this.pService.saveUser(u).subscribe((data:User)=>{
       console.log("saved data",data)
-      if(data){
+        if(data){
         this.getuser();
-      }
-    })
-    
+        }
+      })
+    }
+    else{
+      //console.log("updated user here",u)
+      const userdata={...u,id:this.selectedusr.id}
+      this.pService.updateUser(userdata).subscribe((data)=>{
+        if(data){
+        this.getuser();
+        }
+      })
+    }
+     
   }
   deleteUser(id:string){
     //console.log(id);
@@ -49,5 +61,11 @@ export class App {
     })
     
 
+  }
+  updateUser(id:string){
+    this.pService.getSelectedUser(id).subscribe((data:User)=>{
+      console.log("updating....")
+      this.selectedusr=data;
+    })
   }
 }

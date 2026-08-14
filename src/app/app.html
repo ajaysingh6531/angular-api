@@ -3,15 +3,19 @@
 <h6>hey man</h6>
 
 <form #userForm="ngForm"  (ngSubmit)="addUser(userForm.value)">
-    <input type="text" name="name" id="" placeholder="enter name" ngModel>
+    <input type="text" name="name" id="" placeholder="enter name" [ngModel]="selectedusr?.name">
     <br><br>
-    <input type="text" name="age" id="" placeholder="enter age" ngModel>
+    <input type="text" name="age" id="" placeholder="enter age" [ngModel]="selectedusr?.age">
     <br><br>
-    <input type="text" name="email" id="" placeholder="enter email" ngModel>
+    <input type="text" name="email" id="" placeholder="enter email" [ngModel]="selectedusr?.email">
     <br><br>
-    <button>Add User</button>
+    @if(!selectedusr){<button>Add User</button>}
+    @else{
+        <button>update User</button>
+    }
 </form>
 <h4>you will see content when you click on the any input field then click outside  dont know what is the issue</h4>
+<h4>and if you click on update button value's in input filed wont seen updated then click on any input field the click outside you will see correct values in fileds </h4>
 @for( p of userList;track p.id){
     <ul>
         <li>{{p.name}}</li>
@@ -19,5 +23,6 @@
         <li>{{p.email}}</li>
         <!-- <li><img src="{{p.thumbnail}}" alt=""></li> -->
          <li><button (click)="deleteUser(p.id)">Delete</button></li>
+         <li><button (click)="updateUser(p.id)">Update</button></li>
     </ul>
 }

@@ -21,4 +21,12 @@ export class Product {
         const url="http://localhost:3000/users";
         return this.http.delete<User>(url+"/"+id);
     }
+    getSelectedUser(id:string):Observable<User>{
+        const url="http://localhost:3000/users";
+        return this.http.get<User>(url+"/"+id);
+    }
+    updateUser(u:User):Observable<User>{
+        const url="http://localhost:3000/users";
+        return this.http.put<User>(url+"/"+u.id,u);
+    }
 }
