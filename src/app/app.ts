@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import {Product} from './services/product'
 import { User } from './interfaces/User';
 import { NgFor } from '@angular/common';
@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet ,NgFor,FormsModule],
+  imports: [RouterOutlet ,NgFor,FormsModule,RouterLink],
   templateUrl: './app.html',
   
   styleUrl: './app.css'
@@ -16,8 +16,10 @@ import { FormsModule } from '@angular/forms';
 export class App {
   protected readonly title = signal('angular-api');
 
-  userList:User[]=[];
+   userList:User[]=[];
+  //userList=signal<User[]>([])
   selectedusr:User |undefined;
+  //selectedusr=signal<User |undefined>(undefined);
   constructor(private pService: Product){
 
   }

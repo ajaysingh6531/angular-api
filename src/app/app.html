@@ -1,4 +1,5 @@
 <h1>API Service</h1>
+<h3>go inside api folder in Documents ..  then run the npx command to run backend ajaysingh@Ajays-MacBook-Air api % npx json-server db.json</h3>
 <p>Total: {{ userList.length }}</p>
 <h6>hey man</h6>
 
@@ -25,4 +26,7 @@
          <li><button (click)="deleteUser(p.id)">Delete</button></li>
          <li><button (click)="updateUser(p.id)">Update</button></li>
     </ul>
+    
 }
+<a routerLink="/admin">go to admin page</a>
+    <router-outlet></router-outlet>
